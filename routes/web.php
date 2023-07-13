@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\Dashboard;
+use App\Http\Controllers\MaterialController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [Dashboard::class, 'index'])->name('dashboard');
+
+Route::resource('/courses', CourseController::class)->names('course');
+
+Route::resource('/materials', MaterialController::class)->names('material');
